@@ -1,0 +1,13 @@
+[Unit]
+Description=Hubot
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker stop hubot
+#ExecStartPre=-/usr/bin/docker rm hubot
+ExecStart=/usr/bin/docker start hubot
+
+[Install]
+WantedBy=multi-user.target
