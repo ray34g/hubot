@@ -6,10 +6,7 @@ fs = require 'fs'
 sysPath = require 'path'
 
 config = {}
-workflow = ""
-operator = "rayg"
-
-
+workflow = "workflow"
 
 module.exports = (robot) ->
     ##  
@@ -17,15 +14,14 @@ module.exports = (robot) ->
     robot.hear /.*/, (msg) ->
     console.info("Operator:" + config.operator)
     console.info("Checker:" + config.checker)
-
-        # Accept
-        if config.operator is msg.envelope.user.name
-            return
-        else
-            msg.finish()
+    # Accept
+    if config.operator is msg.envelope.user.name
+        return
+    else
+        msg.finish()
         # Drop
-        if /bot$/.test msg.envelope.user.name
-            msg.finish()
+    if /bot$/.test msg.envelope.user.name
+        msg.finish()
 
     ## Files
     robot.hear /open file/i, (msg) ->
