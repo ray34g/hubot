@@ -5,6 +5,8 @@
 fs = require 'fs'
 sysPath = require 'path'
 
+workflow = "workflow"
+
 module.exports = (robot) ->
 
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
@@ -14,6 +16,9 @@ module.exports = (robot) ->
         text = read_document doc_index
 
         robot.send envelope, text
+    ## start workflow
+    robot.hear /start$/i, (msg) ->
+        msg.send "タスクを開始します。"
 
 read_document = (doc_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/docs/', doc_index + '.md')
