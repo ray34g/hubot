@@ -7,10 +7,14 @@ sysPath = require 'path'
 
 config = {}
 workflow = ""
+operator = "rayg"
+
+config = load_config "config.json"
+
+console.info("Operator:" + config.operator)
+console.info("Checker:" + config.checker)
 
 module.exports = (robot) ->
-    config = load_config
-
     ##  
     robot.hear /.*/, (msg) ->
         # Accept
@@ -28,10 +32,7 @@ module.exports = (robot) ->
 
 load_config = (filename = "config.json") ->
     console.info("Config: " + filename)
-    config = read_json filename
-    console.info("Operator:" + config.operator)
-    console.info("Checker:" + config.checker)
-    config
+    read_json filename
 
 read_json = (path) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + path)
