@@ -12,7 +12,7 @@ module.exports = (robot) ->
     robot.hear /file\d/i, (msg) ->
         console.info("Reading:")
         doc_index = 0
-# doc_index = msg.match[1]
+        doc_index = msg.match[1]
         text = read_document doc_index
         msg.send "file:\n" + text
 
@@ -25,9 +25,9 @@ module.exports = (robot) ->
 
 read_document = (doc_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/docs/' + doc_index + '.md')
+    console.info("Read:" + FILE_PATH)
     try
         text = fs.readFileSync FILE_PATH, 'utf8'
-        console.info("Read:" + FILE_PATH)
     catch error
         console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
