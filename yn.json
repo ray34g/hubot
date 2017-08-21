@@ -1,0 +1,1 @@
+{"id":1,"index":"yn","default_step":{"prev":"","next":""},"action_type":"return","triggers":["はい","いいえ"],"remind":{"cron": "","route":""},"description":"yn"}

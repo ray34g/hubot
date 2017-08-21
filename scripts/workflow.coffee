@@ -36,13 +36,6 @@ module.exports = (robot) ->
         text = read_document doc_index
         msg.send "file:\n" + text
 
-    ## start workflow
-    robot.hear /start$/i, (msg) ->
-        msg.send "タスクを開始します。"
-    ## 
-    robot.hear /end$/i, (msg) ->
-        msg.send "タスク終了します。"
-
 next_step = (step_index) ->
     try
         step = read_step step_index
