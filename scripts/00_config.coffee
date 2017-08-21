@@ -12,8 +12,6 @@ module.exports = (robot) ->
     load_config
 
     robot.hear /.*/, (msg) ->
-        console.info("Operator:" + config.operator)
-        console.info("Checker:" + config.checker)
         # Accept
         if config.operator is msg.envelope.user.name
             return
@@ -29,9 +27,12 @@ module.exports = (robot) ->
 
 load_config = (filename = "config.json") ->
     config = read_json filename
+    console.info("Operator:" + config.operator)
+    console.info("Checker:" + config.checker)
 
 read_json = (path) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + path)
+    console.info("Read:" + FILE_PATH)
     try
         json = fs.readFileSync FILE_PATH, 'utf8'
         JSON.parse(json)

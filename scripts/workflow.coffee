@@ -34,6 +34,7 @@ read_document = (doc_index) ->
 
 read_step = (step_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/steps/' + step_index + '.json')
+    console.info("Read:" + FILE_PATH)
     try
         json = fs.readFileSync FILE_PATH, 'utf8'
         JSON.parse(json)
