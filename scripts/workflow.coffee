@@ -26,13 +26,16 @@ module.exports = (robot) ->
     robot.hear /.*/, (msg) ->
         date = new Date
         user = msg.envelope.user.name
-        text = msg.match[0]
+        room = msg.envelope.room
+        text = msg.envelope.message.text
 
         console.info "-----"
-        console.info JSON.stringify(msg)
+        console.info JSON.stringify(msg.envelope)
         console.info "-----"
+        console.info JSON.stringify(step)
 
         filter = new RegExp("/a/",'i')
+        read_step step.next
         return
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
