@@ -23,13 +23,7 @@ module.exports = (robot) ->
             console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
     ## ステップトリガの読み込み処理
-    for trigger in step.triggers
-        robot.hear new RegExp("#{trigger}", "i"), (msg) ->
-            unless step.triggers.indexOf(trigger) is -1
-                msg.send "イベントが起きました。"
-            else
-                msg.finish()
-    
+    set_triggers step, robot
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
         doc_index = msg.match[1]
