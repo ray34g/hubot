@@ -23,9 +23,11 @@ module.exports = (robot) ->
             console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
     for trigger in step.triggers
-        robot.hear new RegExp("^#{trigger}", "i"), (msg) ->
-            msg.send "イベントが起きました。"
-            msg.finish()
+        robot.hear new RegExp("(#{trigger})", "i"), (msg) ->
+            unless step.triggers.indexOf(trigger) is -1
+                msg.send "イベントが起きました。"
+            else
+                msg.finish()
 
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
