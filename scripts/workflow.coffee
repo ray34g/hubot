@@ -35,10 +35,9 @@ module.exports = (robot) ->
             console.info "-----"
             console.info JSON.stringify(step)
 
-        for t in step.triggers
-            if (new RegExp("^#{t}", "i").test(text))
-                console.info read_document step.index
-
+        for word in step.triggers
+            if (new RegExp("^#{word}", "i").test(text))
+                msg.send read_document step.index 
 
         if (/next/.test(text))
             read_step step.next
