@@ -11,8 +11,10 @@ module.exports = (robot) ->
 
     step = read_step "root"
 
+    robot.hear /show current step/i, (msg) ->
+        msg.send JSON.stringify(step)
+
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
-        console.info("Reading:")
         doc_index = msg.match[1]
         text = read_document doc_index
         msg.send "file:\n" + text
