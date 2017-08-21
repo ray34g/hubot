@@ -70,6 +70,7 @@ read_step = (step_index) ->
 
 ask_yn = (msg) ->
     console.info "yn"
+
 toYmdDate = (date) ->
   Y = date.getFullYear()
   m = ('0' + (date.getMonth() + 1)).slice(-2)
