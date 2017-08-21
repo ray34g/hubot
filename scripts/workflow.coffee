@@ -23,9 +23,10 @@ module.exports = (robot) ->
             console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
     robot.hear /.*/, (msg) ->
-        date = new
-        user = msg.envelope.user.name Date
+        date = new Date
+        user = msg.envelope.user.name
         text = msg.match[0]
+
         console.info "-----"
         console.info date
         console.info "-----"
