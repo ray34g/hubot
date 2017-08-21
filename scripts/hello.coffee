@@ -35,6 +35,7 @@ module.exports = (robot) ->
         return if typeof robot?.send isnt 'function'
         envelope = {}
         robot.send envelope, "Hello, world! @all"
+        console.info("Console:")
         clearInterval cid
     , 1000
 
