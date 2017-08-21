@@ -36,7 +36,7 @@ module.exports = (robot) ->
             console.info JSON.stringify(step)
 
         for t in step.triggers
-            if (/#{t}/.test(text))
+            if (new RegExp("^#{t}", "i").test(text))
                 console.info read_document step.index
 
 
