@@ -20,8 +20,8 @@ module.exports = (robot) ->
             console.info("Accepted")
             return
         else if config.checker is msg.envelope.user.name
-            console.info("Dropped")
-            msg.finish()
+            console.info("Accepted")
+            return
         # Drop
         if /bot$/.test msg.envelope.user.name
             console.info("Dropped")
@@ -29,7 +29,7 @@ module.exports = (robot) ->
 
     ## Files
     robot.hear /show config/i, (msg) ->
-        msg.send (read_json "config.json")
+        msg.send JSON.stringify(config)
 
 load_config = (filename = "config.json") ->
     read_json filename
