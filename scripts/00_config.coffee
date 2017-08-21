@@ -12,14 +12,30 @@ module.exports = (robot) ->
     load_config
 
     robot.hear /.*/, (msg) ->
-#        if ['ray34g', ''].indexOf msg.envelope.user.name isnt -1
-#            return
-         if /bot$/.test msg.envelope.user.name
+        config.operator
+        # Accept
+        if config.operator is msg.envelope.user.name
+            return
+        else
             msg.finish()
+        # Drop
+        if /bot$/.test msg.envelope.user.name
+            msg.finish()
+
+  robot.respond /today ([-+]?\d+)/i, (msg) ->
+    num = parseInt(msg.match[1])
+    replyDate(msg, num)
+
+  robot.respond /today\s*$/i, (msg) ->
+    replyDate(msg, 0)
 
     ## Files
     robot.hear /open file/i, (msg) ->
         msg.send (read_json "config.json")
+
+set_actor = (config) ->
+    
+
 
 load_config = (filename = "config.json") ->
     config = read_json filename
