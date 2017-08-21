@@ -5,6 +5,8 @@
 fs = require 'fs'
 sysPath = require 'path'
 
+workflow = "workflow"
+
 module.exports = (robot) ->
 
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
