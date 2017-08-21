@@ -12,7 +12,7 @@
 #   Good Morning makes hubot say good morning to you back
 
 
-# cronJob = require('cron').CronJob
+cronJob = require('cron').CronJob
 
 hellos = [
     "Well hello there, %",
@@ -50,6 +50,7 @@ module.exports = (robot) ->
     ## hear
     robot.hear /Can you hear me?/i, (msg) ->
         msg.send "I hear you."
+        read_json "config.json"
     ## respond
     robot.respond /Can you respond me?/i, (msg) ->
         msg.send "I respond you."

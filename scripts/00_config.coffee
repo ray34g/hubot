@@ -6,6 +6,7 @@ fs = require 'fs'
 sysPath = require 'path'
 
 config = {}
+workflow = ""
 
 module.exports = (robot) ->
     load_config
@@ -19,8 +20,8 @@ module.exports = (robot) ->
 load_config = (filename = "config.json") ->
     config = read_json filename
 
-read_json = (filename) ->
-    FILE_PATH = sysPath.join(__dirname, '../api/incident/steps/' + filename)
+read_json = (path) ->
+    FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + "/" + path)
     try
         json = fs.readFileSync FILE_PATH, 'utf8'
         JSON.parse(json)
