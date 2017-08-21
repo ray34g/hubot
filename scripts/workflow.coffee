@@ -9,8 +9,6 @@ workflow = "workflow"
 
 module.exports = (robot) ->
 
-    step = read_step "root"
-
     robot.hear /show current step/i, (msg) ->
         msg.send JSON.stringify(step)
 
@@ -22,19 +20,19 @@ module.exports = (robot) ->
         catch error
             console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
+
+    step = read_step "root"
+    
     robot.hear /.*/, (msg) ->
         date = new Date
         user = msg.envelope.user.name
         text = msg.match[0]
 
         console.info "-----"
-        console.info date
+        console.info JSON.stringify(msg)
         console.info "-----"
-        console.info user
-        console.info "-----"
-        console.info text
-        console.info "-----"
-        console.info JSON.stringify(msg.envelope)
+
+        filter = new RegExp("/a/",'i')
         return
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
