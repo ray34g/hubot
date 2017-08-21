@@ -12,7 +12,7 @@ module.exports = (robot) ->
     robot.hear /file\d/i, (msg) ->
         console.info("Reading:")
         doc_index = 0
-        doc_index = msg.match[1] if msg.match[1]
+# doc_index = msg.match[1]
         text = read_document doc_index
         msg.send "file:\n" + text
 
@@ -29,7 +29,7 @@ read_document = (doc_index) ->
         text = fs.readFileSync FILE_PATH, 'utf8'
         console.info("Read:" + FILE_PATH)
     catch error
-       console.error("Unable to read file", error) unless error.code is 'ENOENT'
+        console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
 read_step = (step_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/steps/' + step_index + '.json')
@@ -37,7 +37,7 @@ read_step = (step_index) ->
         json = fs.readFileSync FILE_PATH, 'utf8'
         JSON.parse(json)
     catch error
-       console.error("Unable to read file", error) unless error.code is 'ENOENT'
+        console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
 
 ### feature for development.
