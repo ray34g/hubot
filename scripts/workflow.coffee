@@ -13,6 +13,9 @@ module.exports = (robot) ->
 
     robot.hear /show current step/i, (msg) ->
         msg.send JSON.stringify(step)
+    
+    robot.hear new RegExp("^#{step.triggers}", "i"), (msg) ->
+        msg.send "開始します"
 
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
         doc_index = msg.match[1]
