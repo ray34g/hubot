@@ -22,13 +22,6 @@ module.exports = (robot) ->
         if /bot$/.test msg.envelope.user.name
             msg.finish()
 
-  robot.respond /today ([-+]?\d+)/i, (msg) ->
-    num = parseInt(msg.match[1])
-    replyDate(msg, num)
-
-  robot.respond /today\s*$/i, (msg) ->
-    replyDate(msg, 0)
-
     ## Files
     robot.hear /open file/i, (msg) ->
         msg.send (read_json "config.json")

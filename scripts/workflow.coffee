@@ -23,6 +23,7 @@ module.exports = (robot) ->
     robot.hear /end$/i, (msg) ->
         msg.send "タスク終了します。"
 
+
 read_document = (doc_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/docs/' + doc_index + '.md')
     console.info("Read:" + FILE_PATH)

@@ -47,6 +47,14 @@ module.exports = (robot) ->
         hello = msg.random mornings
         msg.send hello.replace "%", msg.message.user.name
 
+    # Today
+    robot.respond /today ([-+]?\d+)/i, (msg) ->
+        num = parseInt(msg.match[1])
+        replyDate(msg, num)
+
+    robot.respond /today\s*$/i, (msg) ->
+        replyDate(msg, 0)
+
     # Test Codes
     ## hear
     robot.hear /Can you hear me?/i, (msg) ->
@@ -74,6 +82,13 @@ module.exports = (robot) ->
     robot.hear /返答/i, (msg) ->
         msg.send "( [[はい]](http://192.168.22.101:9999/hubot/yes) / [[いいえ]](http://192.168.22.101:9999/hubot/no)y)"
 
+
+replyDate = (msg, num) ->
+    now = new Date(Date.now() + num * 24 * 60 * 60 * 1000)
+    year = now.getFullYear()
+    month = now.getMonth() + 1
+    day = now.getDate()
+    msg.send year + "/" + month + "/" + day
 
 #   ## Cron
 #   send = (room, msg) ->
