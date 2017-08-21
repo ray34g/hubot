@@ -12,7 +12,8 @@ module.exports = (robot) ->
     load_config
 
     robot.hear /.*/, (msg) ->
-        config.operator
+        console.info("Operator:" + config.operator)
+        console.info("Checker:" + config.checker)
         # Accept
         if config.operator is msg.envelope.user.name
             return
@@ -25,10 +26,6 @@ module.exports = (robot) ->
     ## Files
     robot.hear /open file/i, (msg) ->
         msg.send (read_json "config.json")
-
-set_actor = (config) ->
-    
-
 
 load_config = (filename = "config.json") ->
     config = read_json filename
