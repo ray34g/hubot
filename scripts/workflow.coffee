@@ -12,11 +12,14 @@ module.exports = (robot) ->
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
         envelope = {}
         doc_index = 0
-        doc_index = msg.match[1] if msg.match[1]
+        doc_index = msg.match[1]
         text = read_document doc_index
 
         robot.send envelope, text
     ## start workflow
+    robot.hear /start$/i, (msg) ->
+        msg.send "タスクを開始します。"
+    ## 
     robot.hear /start$/i, (msg) ->
         msg.send "タスクを開始します。"
 
