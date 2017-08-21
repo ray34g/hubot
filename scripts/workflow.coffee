@@ -22,25 +22,16 @@ module.exports = (robot) ->
         catch error
             console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
+    robot.hear /.*/, (msg) ->
+        date = new
+        user = msg.message.user.name Date
+        text = msg.match[0]
+        return
+
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
         doc_index = msg.match[1]
         text = read_document doc_index
         msg.send "file:\n" + text
-
-next_step = (step_index) ->
-    try
-        step = read_step step_index
-
-        console.info(JSON.stringify(step))
-        ## ステップトリガの読み込み処理
-        for trigger in step.triggers
-            robot.hear new RegExp("#{trigger}", "i"), (msg) ->
-                unless step.triggers.indexOf(trigger) is -1
-                    msg.send "t: " + trigger # Do something
-                else
-                    msg.finish()
-    catch error
-        console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
 read_document = (doc_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/docs/' + doc_index + '.md')
@@ -59,6 +50,18 @@ read_step = (step_index) ->
     catch error
         console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
+
+toYmdDate = (date) ->
+  Y = date.getFullYear()
+  m = ('0' + (date.getMonth() + 1)).slice(-2)
+  d = ('0' + date.getDate()).slice(-2)
+  return "#{Y}-#{m}-#{d}"
+
+# 時刻を受け取ってhh:mm形式で返す
+tohhmmTime = (date) ->
+  hh = ('0' + date.getHours()).slice(-2)
+  mm = ('0' + date.getMinutes()).slice(-2)
+  return "#{hh}:#{mm}"
 
 ### feature for development.
 
