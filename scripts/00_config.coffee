@@ -11,24 +11,24 @@ workflow = "workflow"
 module.exports = (robot) ->
     ##  
     config = load_config "config.json"
-    robot.hear /.*/, (msg) ->
     console.info("Operator:" + config.operator)
     console.info("Checker:" + config.checker)
-    # Accept
-    if config.operator is msg.envelope.user.name
-        return
-    else
-        msg.finish()
+    
+    robot.hear /.*/, (msg) ->
+        # Accept
+        if config.operator is msg.envelope.user.name
+            return
+        else
+            msg.finish()
         # Drop
-    if /bot$/.test msg.envelope.user.name
-        msg.finish()
+        if /bot$/.test msg.envelope.user.name
+            msg.finish()
 
     ## Files
-    robot.hear /open file/i, (msg) ->
+    robot.hear /show config/i, (msg) ->
         msg.send (read_json "config.json")
 
 load_config = (filename = "config.json") ->
-    console.info("Config: " + filename)
     read_json filename
 
 read_json = (path) ->
