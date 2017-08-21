@@ -13,6 +13,14 @@ module.exports = (robot) ->
 
     robot.hear /show current step/i, (msg) ->
         msg.send JSON.stringify(step)
+
+    robot.hear /set step.*((\d|\w){1,5}/i, (msg) ->
+        msg.send "Step " + msg.match[1]
+        try
+            step = read_step msg.match[1]
+            console.info(JSON.stringify(step))
+        catch error
+            console.error("Unable to read file", error) unless error.code is 'ENOENT'
     
     for trigger in step.triggers
         robot.hear new RegExp("^#{trigger}", "i"), (msg) ->
