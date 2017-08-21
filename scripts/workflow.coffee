@@ -37,7 +37,8 @@ module.exports = (robot) ->
 
         for t in step.triggers
             if (/#{t}/.test(text))
-                read_document step.index
+                console.info read_document step.index
+
 
         if (/next/.test(text))
             read_step step.next
