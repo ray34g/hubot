@@ -35,6 +35,11 @@ module.exports = (robot) ->
             console.info "-----"
             console.info JSON.stringify(step)
 
+        for t in step.triggers
+            if t is text
+            if (/#{t}/.test(text))
+                read_document step.index
+
         if (/next/.test(text))
             read_step step.next
 
