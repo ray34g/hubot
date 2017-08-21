@@ -72,9 +72,6 @@ module.exports = (robot) ->
     ## Link button
     robot.hear /返答/i, (msg) ->
         msg.send "( [[はい]](http://192.168.22.101:9999/hubot/yes) / [[いいえ]](http://192.168.22.101:9999/hubot/no)y)"
-    ## Files
-    robot.hear /open file/i, (msg) ->
-        msg.send (read_json "config.json")
 
 
 #   ## Cron
