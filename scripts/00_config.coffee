@@ -9,14 +9,15 @@ config = {}
 workflow = ""
 operator = "rayg"
 
-config = load_config "config.json"
 
-console.info("Operator:" + config.operator)
-console.info("Checker:" + config.checker)
 
 module.exports = (robot) ->
     ##  
+    config = load_config "config.json"
     robot.hear /.*/, (msg) ->
+    console.info("Operator:" + config.operator)
+    console.info("Checker:" + config.checker)
+
         # Accept
         if config.operator is msg.envelope.user.name
             return
