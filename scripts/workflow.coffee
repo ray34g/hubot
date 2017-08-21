@@ -24,8 +24,16 @@ module.exports = (robot) ->
     
     robot.hear /.*/, (msg) ->
         date = new
-        user = msg.message.user.name Date
+        user = msg.envelope.user.name Date
         text = msg.match[0]
+        console.info "-----"
+        console.info date
+        console.info "-----"
+        console.info user
+        console.info "-----"
+        console.info text
+        console.info "-----"
+        console.info JSON.stringify(msg.envelope)
         return
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
