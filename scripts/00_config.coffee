@@ -17,6 +17,10 @@ module.exports = (robot) ->
          if /bot$/.test msg.envelope.user.name
             msg.finish()
 
+    ## Files
+    robot.hear /open file/i, (msg) ->
+        msg.send (read_json "config.json")
+
 load_config = (filename = "config.json") ->
     config = read_json filename
 
