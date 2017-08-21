@@ -29,13 +29,15 @@ module.exports = (robot) ->
         room = msg.envelope.room
         text = msg.envelope.message.text
 
-        console.info "-----"
-        console.info JSON.stringify(msg.envelope)
-        console.info "-----"
-        console.info JSON.stringify(step)
+        if /debug/i.test(text)
+            console.info "-----"
+            console.info JSON.stringify(msg.envelope)
+            console.info "-----"
+            console.info JSON.stringify(step)
 
-        filter = new RegExp("/a/",'i')
-        read_step step.next
+        if /next/i.test(text)
+            read_step step.next
+
         return
 
     robot.hear /file.*((\d|\w){1,5})/i, (msg) ->
@@ -61,6 +63,8 @@ read_step = (step_index) ->
         console.error("Unable to read file", error) unless error.code is 'ENOENT'
 
 
+ask_yn = (msg) ->
+    if ()
 toYmdDate = (date) ->
   Y = date.getFullYear()
   m = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -75,10 +79,12 @@ tohhmmTime = (date) ->
 
 ### feature for development.
 
-write_document = () ->
+write_document = (data, path) ->
+    fs.writeFileSync path, JSON.stringify(data), 'utf-8'
     return
 
-save_step + () ->
+save_step = (data, index) ->
+    fs.writeFileSync , JSON.stringify(data), 'utf-8'
 
 ###
 
