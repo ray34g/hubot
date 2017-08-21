@@ -17,14 +17,14 @@ module.exports = (robot) ->
     robot.hear /.*/, (msg) ->
         # Accept
         if config.operator is msg.envelope.user.name
-            console.info("Accepted")
+            console.info("Accepted.")
             return
         else if config.checker is msg.envelope.user.name
-            console.info("Accepted")
+            console.info("Accepted.")
             return
         # Drop
         if /bot$/.test msg.envelope.user.name
-            console.info("Dropped")
+            console.info("Dropped.")
             msg.finish()
 
     ## Files

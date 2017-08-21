@@ -9,9 +9,10 @@ workflow = "workflow"
 
 module.exports = (robot) ->
 
-    robot.hear /file.*(\d)/i, (msg) ->
+    step = read_step "root"
+
+    robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
         console.info("Reading:")
-        doc_index = 0
         doc_index = msg.match[1]
         text = read_document doc_index
         msg.send "file:\n" + text
@@ -22,7 +23,6 @@ module.exports = (robot) ->
     ## 
     robot.hear /end$/i, (msg) ->
         msg.send "タスク終了します。"
-
 
 read_document = (doc_index) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + workflow + '/docs/' + doc_index + '.md')
