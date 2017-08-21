@@ -29,13 +29,13 @@ module.exports = (robot) ->
         room = msg.envelope.room
         text = msg.envelope.message.text
 
-        if /debug/i.test(text)
+        if (/debug/.test(text))
             console.info "-----"
             console.info JSON.stringify(msg.envelope)
             console.info "-----"
             console.info JSON.stringify(step)
 
-        if /next/i.test(text)
+        if (/next/.test(text))
             read_step step.next
 
         return
@@ -64,7 +64,7 @@ read_step = (step_index) ->
 
 
 ask_yn = (msg) ->
-    if ()
+    console.info "yn"
 toYmdDate = (date) ->
   Y = date.getFullYear()
   m = ('0' + (date.getMonth() + 1)).slice(-2)
