@@ -25,7 +25,7 @@ module.exports = (robot) ->
     ## ステップトリガの読み込み処理
     for trigger in step.triggers
         robot.hear new RegExp("#{trigger}", "i"), (msg) ->
-            unless step.triggers.indexOf(msg.match[1]) is -1
+            unless step.triggers.indexOf(trigger) is -1
                 msg.send "イベントが起きました。" # Do something
             else
                 msg.finish()
