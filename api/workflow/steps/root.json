@@ -1,1 +1,1 @@
-{"id":0,"index":"0","default_step":{"prev":"root","next":"1"},"action_type":"forward","triggers":"対応開始","remind":{"cron": "","route":""},"description":"root node."}
+{"id":0,"index":"0","default_step":{"prev":"root","next":"1"},"action_type":"forward","triggers":["対応開始","開始"],"remind":{"cron": "","route":""},"description":"root node."}
