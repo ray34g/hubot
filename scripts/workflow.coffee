@@ -10,6 +10,7 @@ workflow = "workflow"
 module.exports = (robot) ->
 
     robot.hear /file.*((\d|\w){1-5})/i, (msg) ->
+        console.info("Reading:")
         doc_index = 0
         doc_index = msg.match[1] if msg.match[1]
         text = read_document doc_index
