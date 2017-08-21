@@ -9,8 +9,9 @@ config = {}
 workflow = ""
 
 module.exports = (robot) ->
-    load_config
+    config = load_config
 
+    ##  
     robot.hear /.*/, (msg) ->
         # Accept
         if config.operator is msg.envelope.user.name
@@ -26,9 +27,11 @@ module.exports = (robot) ->
         msg.send (read_json "config.json")
 
 load_config = (filename = "config.json") ->
+    console.info("Config: " + filename)
     config = read_json filename
     console.info("Operator:" + config.operator)
     console.info("Checker:" + config.checker)
+    config
 
 read_json = (path) ->
     FILE_PATH = sysPath.join(__dirname, '../api/' + path)
