@@ -1,5 +1,5 @@
 # Description:
-#     init config and lists
+#     botが反応する対象を限定する
 #
 
 fs = require 'fs'
